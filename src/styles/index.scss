@@ -11,3 +11,22 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+div{
+    border: 1px solid green;
+}
+body{
+    background: black;
+}
+.centered-on-window{
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 750px;
+}
+
+.header{
+    color: pink;
+}

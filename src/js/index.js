@@ -8,7 +8,7 @@ import "bootstrap";
 //include your index.scss file into the bundle
 import "../styles/index.scss";
 
-//import your own components
+//core component of the site
 import { Home } from "./component/home.js";
 
 //render your react application

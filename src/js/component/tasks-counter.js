@@ -1,5 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export function TasksCounter() {
-	return <div className="card">counter</div>;
+export function TasksCounter(props) {
+	return <div className="card">{props.tasksCount} item left</div>;
 }
+
+TasksCounter.propTypes = {
+	tasksCount: PropTypes.number
+};

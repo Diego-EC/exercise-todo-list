@@ -6,7 +6,7 @@ import { Task } from "./task.js";
 import { TasksCounter } from "./tasks-counter.js";
 import React, { useState, useEffect } from "react";
 // https://stackoverflow.com/questions/57341541/removing-object-from-array-using-hooks-usestate
-//create your first component
+// core of the app
 export function Home() {
 	const [tasks, updateTasks] = useState([
 		"eat",
@@ -24,9 +24,6 @@ export function Home() {
 	};
 
 	const addTask = e => {
-		console.log("addTask");
-		console.log(tasks);
-		console.log(e.target.value);
 		const newTasks = [...tasks, e.target.value];
 		updateTasks(newTasks);
 	};
@@ -50,15 +47,7 @@ export function Home() {
 		<div className="wrapper centered-on-window bg-light">
 			<div>
 				<Header />
-				{/*<input type="text" />*/}
 				<InputTask addTask={addTask} />
-				<input
-					type="button"
-					value="Save"
-					onClick={() =>
-						updateTasks(["eat", "sleep", "clean", "sleep", "code"])
-					}
-				/>
 				<div>{tasksMap}</div>
 				<TasksCounter tasksCount={tasks.length} />
 			</div>

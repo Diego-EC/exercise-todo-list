@@ -23,6 +23,14 @@ export function Home() {
 		updateTasks(filteredTasks);
 	};
 
+	const addTask = e => {
+		console.log("addTask");
+		console.log(tasks);
+		console.log(e.target.value);
+		const newTasks = [...tasks, e.target.value];
+		updateTasks(newTasks);
+	};
+
 	let tasksMap = tasks.map((task, index) => {
 		return (
 			<Task
@@ -42,7 +50,8 @@ export function Home() {
 		<div className="wrapper centered-on-window bg-light">
 			<div>
 				<Header />
-				<input type="text" />
+				{/*<input type="text" />*/}
+				<InputTask addTask={addTask} />
 				<input
 					type="button"
 					value="Save"

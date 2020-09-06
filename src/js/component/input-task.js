@@ -1,25 +1,18 @@
 import React from "react";
-//import { render } from "react-dom";
+import PropTypes from "prop-types";
 
-export function InputTask() {
-	return <input />;
-	/*constructor() {
-		super();
-		this.state = {
-			value: ""
-		};
-	}*/
-	/*
-	render() {
-		return (
-			<div className="card">
-				<p>InputTask</p>
-				<input
-					onChange={e => this.setState({ value: e.target.value })}
-				/>
-				<br />
-			</div>
-		);
-	}*/
+export function InputTask(props) {
+	const addTask = e => {
+		if (e.keyCode === 13 && e.target.value.replace(/\s/g, "") != "") {
+			console.log(e.target.value);
+			props.addTask(e);
+			e.target.value = "";
+		}
+	};
+
+	return <input type="text" onKeyUp={addTask} />;
 }
-//render(<InputTask />, document.getElementById("app"));
+
+InputTask.propTypes = {
+	addTask: PropTypes.func
+};

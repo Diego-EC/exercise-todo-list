@@ -1,10 +1,10 @@
-//import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Header } from "./header.js";
 import { InputTask } from "./input-task.js";
 import { Task } from "./task.js";
 import { TasksCounter } from "./tasks-counter.js";
-import React, { useState, useEffect } from "react";
+
 // core of the app
 export function Home() {
 	const NO_TASKS_MESSAGE = "No tasks, add a task";

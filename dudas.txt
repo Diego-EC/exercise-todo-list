@@ -1,0 +1,22 @@
+# Dudas React.
+
+1.
+const [ mySuperVariable, mySuperFunction ] = useState(          null        );
+es un const, pero su valor lo cambiamos con la función, ¿como es entonces que es un const?
+
+2. 
+import React, { useState, useEffect } from "react";
+¿opr qué hay que ponerlo así?
+
+3.
+Dicen que funciones anónimas mejor no usarlas
+
+4. 
+Como pasar el index de un item de un array entre distintos componentes.
+
+5.
+¿Está bien hecho lo de task-height?
+¿y centered-on-window? Ponerles ese nombre quiero decir.
+
+6.
+no consigo alinear el texto en vertical dentro de las tasks.

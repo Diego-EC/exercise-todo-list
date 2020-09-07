@@ -9,7 +9,7 @@ export function InputTask(props) {
 		}
 	};
 
-	return <input type="text" onKeyUp={addTask} />;
+	return <input className="input-task" type="text" onKeyUp={addTask} />;
 }
 
 InputTask.propTypes = {

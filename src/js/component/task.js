@@ -9,19 +9,20 @@ export function Task(props) {
 	};
 
 	return (
-		<div
-			className="card"
-			onMouseEnter={() => setHover(true)}
-			onMouseLeave={() => setHover(false)}>
-			{props.description}
-
-			{inHover && (
-				<p>
-					<button type="button" onClick={deleteTask}>
-						<i className="fas fa-trash-alt" />
-					</button>
-				</p>
-			)}
+		<div className="card task">
+			<div
+				className="row"
+				onMouseEnter={() => setHover(true)}
+				onMouseLeave={() => setHover(false)}>
+				<div className="col-10">{props.description}</div>
+				<div className="col-2">
+					{inHover && (
+						<button type="button" onClick={deleteTask}>
+							<i className="fas fa-trash-alt" />
+						</button>
+					)}
+				</div>
+			</div>
 		</div>
 	);
 }

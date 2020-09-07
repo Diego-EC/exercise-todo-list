@@ -5,9 +5,9 @@ import { InputTask } from "./input-task.js";
 import { Task } from "./task.js";
 import { TasksCounter } from "./tasks-counter.js";
 import React, { useState, useEffect } from "react";
-// https://stackoverflow.com/questions/57341541/removing-object-from-array-using-hooks-usestate
 // core of the app
 export function Home() {
+	const NO_TASKS_MESSAGE = "No tasks, add a task";
 	const [tasks, updateTasks] = useState([
 		"eat",
 		"sleep",
@@ -38,14 +38,13 @@ export function Home() {
 			/>
 		);
 	});
-
-	/*useEffect(() => {
-		console.log("UPDATE");
-	});*/
+	if (tasksMap.length == 0) {
+		tasksMap = <div className="card task">{NO_TASKS_MESSAGE}</div>;
+	}
 
 	return (
 		<div className="wrapper centered-on-window bg-light">
-			<div>
+			<div className="container">
 				<Header />
 				<InputTask addTask={addTask} />
 				<div>{tasksMap}</div>

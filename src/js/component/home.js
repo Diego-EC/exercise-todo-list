@@ -49,6 +49,7 @@ export function Home() {
 				<InputTask addTask={addTask} />
 				<div>{tasksMap}</div>
 				<TasksCounter tasksCount={tasks.length} />
+				<div className="task align-bottom">bottom</div>
 			</div>
 		</div>
 	);

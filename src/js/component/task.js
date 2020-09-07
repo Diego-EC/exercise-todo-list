@@ -12,7 +12,9 @@ export function Task(props) {
 		<div className="card task">
 			<div
 				className="row"
-				onMouseEnter={() => setHover(true)}
+				onMouseEnter={() =>
+					setHover(true)
+				} /* mejor con CSS, por rendimiento */
 				onMouseLeave={() => setHover(false)}>
 				<div className="col-10">{props.description}</div>
 				<div className="col-2">

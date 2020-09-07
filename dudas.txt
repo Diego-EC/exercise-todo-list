@@ -3,20 +3,34 @@
 1.
 const [ mySuperVariable, mySuperFunction ] = useState(          null        );
 es un const, pero su valor lo cambiamos con la función, ¿como es entonces que es un const?
+- la constante es el array, no la variable de dentro.
 
 2. 
 import React, { useState, useEffect } from "react";
-¿opr qué hay que ponerlo así?
+import   Home  from "./home";
+¿por qué hay que ponerlo así?
+- puede ser por el expor default.
+https://content.breatheco.de/lesson/javascript-import#exporting-by-default
 
 3.
 Dicen que funciones anónimas mejor no usarlas
+- se crean y se destruyen cada vez que se invocan.
 
 4. 
 Como pasar el index de un item de un array entre distintos componentes.
+			<Task
+				key={index}
+				index={index}
+				description={task}
+				deleteTask={deleteTask}
+			/>
 
 5.
 ¿Está bien hecho lo de task-height?
 ¿y centered-on-window? Ponerles ese nombre quiero decir.
+- NO, mejor solo task. No asociar el nombre al valor, sino a lo que representa.
+- centered-on-window es aceptable, sino wrapper es mejor opción.
 
 6.
 no consigo alinear el texto en vertical dentro de las tasks.
+- Lo vemos en otro momento.

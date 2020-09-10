@@ -16,7 +16,7 @@ export function Task(props) {
 					setHover(true)
 				} /* mejor con CSS, por rendimiento */
 				onMouseLeave={() => setHover(false)}>
-				<div className="col-10">{props.description}</div>
+				<div className="col-10">{props.label}</div>
 				<div className="col-2">
 					{inHover && (
 						<button type="button" onClick={deleteTask}>
@@ -31,6 +31,7 @@ export function Task(props) {
 
 Task.propTypes = {
 	index: PropTypes.number,
-	description: PropTypes.string,
-	deleteTask: PropTypes.func
+	label: PropTypes.string,
+	deleteTask: PropTypes.func,
+	done: PropTypes.bool
 };

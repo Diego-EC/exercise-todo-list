@@ -39,3 +39,11 @@ body{
 .tasks-counter{
     font-size: 0.7rem;
 }
+
+.trash button{
+    visibility: hidden;
+}
+
+.trash:hover button{
+    visibility: visible;
+}

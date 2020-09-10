@@ -38,3 +38,5 @@ no consigo alinear el texto en vertical dentro de las tasks.
 ## Dudas Fetch
 7. ¿Home se ejecuta entero cada vez que invoco updateTasks? 
 
+8. He ido a crear updateTasks para el Fetch y ya tenía un updateTasks, 
+lo he llamado updateTasksFetch, ¿está bien? ¿que se suele hacer en estos casos?

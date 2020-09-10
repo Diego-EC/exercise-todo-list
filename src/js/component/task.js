@@ -2,27 +2,18 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 export function Task(props) {
-	const [inHover, setHover] = useState(false);
-
 	const deleteTask = () => {
 		props.deleteTask(props.index);
 	};
 
 	return (
-		<div className="card task">
-			<div
-				className="row"
-				onMouseEnter={() =>
-					setHover(true)
-				} /* mejor con CSS, por rendimiento */
-				onMouseLeave={() => setHover(false)}>
+		<div className="card task trash">
+			<div className="row">
 				<div className="col-10">{props.label}</div>
 				<div className="col-2">
-					{inHover && (
-						<button type="button" onClick={deleteTask}>
-							<i className="fas fa-trash-alt" />
-						</button>
-					)}
+					<button type="button" onClick={deleteTask}>
+						<i className="fas fa-trash-alt" />
+					</button>
 				</div>
 			</div>
 		</div>

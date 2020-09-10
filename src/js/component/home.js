@@ -8,32 +8,25 @@ import { DeleteButton } from "./delete-button.js";
 
 // core of the app
 export function Home() {
+	//const USER_NAME = "alesanchezr";
+	const USER_NAME = "pepe";
+	//const USER_NAME = "diego";
+	const USER_DOES_NOT_EXIST = 404;
 	const NO_TASKS_MESSAGE = "No tasks, add a task";
 	const [tasks, updateTasks] = useState([]);
-
-	let arr = [
-		{ label: "Make the bed", done: false },
-		{ label: "Walk the dog", done: false },
-		{ label: "Do the replits", done: false },
-		{ label: "lol", done: false }
-	];
 
 	const deleteTask = index => {
 		let filteredTasks = tasks.filter(function(task, idx) {
 			return idx != index;
 		});
-		updateTaskFetch(filteredTasks);
-		//updateTasks(filteredTasks);
+		updateTasksFetch(filteredTasks);
 	};
 
 	const addTask = e => {
 		const newTasks = [...tasks, e.target.value];
-		updateTaskFetch(newTasks);
-
-		//		updateTasks(newTasks);
+		updateTasksFetch(newTasks);
 	};
 
-	console.log("cucu");
 	let tasksMap = tasks.map((task, index) => {
 		return (
 			<Task
@@ -49,12 +42,7 @@ export function Home() {
 	}
 
 	useEffect(() => {
-		//deleteTaskFetch();
 		readTasks();
-		//diegoRead();
-		//diego();
-		//diegoCreate();
-		//updateTaskFetch();
 	}, []);
 
 	return (
@@ -69,24 +57,20 @@ export function Home() {
 		</div>
 	);
 
-	// read, update, delete, create
-	// OK
-	async function readTasks() {
+	function readTasks() {
 		console.log("readTasks");
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/alesanchezr")
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME)
 			.then(response => {
 				if (response.ok) {
-					console.log("Images Loaded!!");
+					console.log("  readTasks OK");
 				} else {
-					console.log("Uh-oh something went wrong");
-					// TODO: aquí poner crear usuario
-					console.log(response.status);
-					console.log(response.statusText);
-					if (response.status == 404) {
-						diegoCreate();
+					console.log("  readTasks ERR");
+					if (response.status == USER_DOES_NOT_EXIST) {
+						createUser();
+					} else {
+						throw Error(response);
 					}
 				}
-				console.log(response);
 				return response.json();
 			})
 			.then(json => {
@@ -96,63 +80,37 @@ export function Home() {
 					console.log(typeof task.label);
 					return task.label;
 				});
-				console.log("-> jsonMap");
-				console.log(jsonMap);
 				updateTasks(jsonMap);
-			});
-	}
-
-	async function readTasksDiego() {
-		console.log("readTasksDiego");
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/diego")
-			.then(response => {
-				if (response.ok) {
-					console.log("Images Loaded!!");
-				} else {
-					console.log("Uh-oh something went wrong");
-				}
-				console.log(response);
-				return response.json();
 			})
-			.then(json => {
-				//here is were your code should start after the fetch finishes
-				console.log(json); //this will print on the console the exact object received from the server
-				let jsonMap = json.map((task, index) => {
-					console.log(typeof task.label);
-					return task.label;
-				});
-				console.log("-> jsonMap");
-				console.log(jsonMap);
-				updateTasks(jsonMap);
-			});
+			.catch(error => console.error("Error:", error));
 	}
 
 	/* ok */
-	async function deleteTasks() {
+	function deleteTasks() {
 		console.log("deleteTasks");
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/alesanchezr", {
-			method: "DELETE", // or 'POST'
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
+			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"
 			}
 		})
 			.then(res => res.json())
-			.then(response => console.log("Success:", JSON.stringify(response)))
+			.then(response => {
+				console.log("Success:", JSON.stringify(response));
+				updateTasksFetch([]);
+			})
 			.catch(error => console.error("Error:", error));
 	}
 
-	/* OK */
-	async function updateTaskFetch(newTasks) {
+	function updateTasksFetch(newTasks) {
 		console.log("updateTaskFetch");
 
 		let arrUpdate = newTasks.map((task, index) => {
 			return { label: task, done: false };
 		});
 
-		console.log(arrUpdate);
-
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/alesanchezr", {
-			method: "PUT", // or 'POST'
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
+			method: "PUT",
 			body: JSON.stringify(arrUpdate),
 			headers: {
 				"Content-Type": "application/json"
@@ -166,21 +124,21 @@ export function Home() {
 			.catch(error => console.error("Error:", error));
 	}
 
-	/* ok */
-	function diegoCreate() {
-		console.log("diego");
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/alesanchezr", {
+	function createUser() {
+		console.log("createUser");
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
 			method: "POST",
-			body: JSON.stringify(arr),
+			body: JSON.stringify([]),
 			headers: {
 				"Content-Type": "application/json"
 			}
 		})
 			.then(response => {
 				if (response.ok) {
-					console.log("Images Loaded!!");
+					console.log("  createUser OK");
 				} else {
-					console.log("Uh-oh something went wrong");
+					console.log("  createUser ERR");
+					throw Error(response.statusText);
 				}
 				console.log(response);
 				return response.json();
@@ -193,36 +151,6 @@ export function Home() {
 			.catch(error => {
 				//error handling
 				console.log(error);
-			});
-	}
-
-	function diegoRead() {
-		console.log("diegoRead");
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/diego", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
-			.then(response => {
-				if (response.ok) {
-					console.log("Images Loaded!!");
-				} else {
-					console.log("Uh-oh something went wrong");
-				}
-				console.log(response);
-				return response.json();
-			})
-			.then(json => {
-				//here is were your code should start after the fetch finishes
-				console.log(json); //this will print on the console the exact object received from the server
-				let jsonMap = json.map((task, index) => {
-					console.log(typeof task.label);
-					return task.label;
-				});
-				console.log("-> jsonMap");
-				console.log(jsonMap);
-				updateTasks(jsonMap);
 			});
 	}
 }

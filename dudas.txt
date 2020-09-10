@@ -34,3 +34,7 @@ Como pasar el index de un item de un array entre distintos componentes.
 6.
 no consigo alinear el texto en vertical dentro de las tasks.
 - Lo vemos en otro momento.
+
+## Dudas Fetch
+7. ¿Home se ejecuta entero cada vez que invoco updateTasks? 
+

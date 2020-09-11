@@ -8,9 +8,7 @@ import { DeleteButton } from "./delete-button.js";
 
 // core of the app
 export function Home() {
-	//const USER_NAME = "alesanchezr";
-	const USER_NAME = "pepe";
-	//const USER_NAME = "diego";
+	const USER_NAME = "diego";
 	const USER_DOES_NOT_EXIST = 404;
 	const NO_TASKS_MESSAGE = "No tasks, add a task";
 	const [tasks, updateTasks] = useState([]);
@@ -57,7 +55,7 @@ export function Home() {
 		</div>
 	);
 
-	function readTasks() {
+	function readTasksFetch() {
 		console.log("readTasks");
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME)
 			.then(response => {
@@ -85,8 +83,7 @@ export function Home() {
 			.catch(error => console.error("Error:", error));
 	}
 
-	/* ok */
-	function deleteTasks() {
+	function deleteTasksFetch() {
 		console.log("deleteTasks");
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
 			method: "DELETE",
@@ -124,7 +121,7 @@ export function Home() {
 			.catch(error => console.error("Error:", error));
 	}
 
-	function createUser() {
+	function createUserFetch() {
 		console.log("createUser");
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
 			method: "POST",

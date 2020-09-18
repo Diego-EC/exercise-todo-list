@@ -8,7 +8,9 @@ import { DeleteButton } from "./delete-button.js";
 
 // core of the app
 export function Home() {
-	const USER_NAME = "diego";
+	//const USER_NAME = "alesanchezr";
+	const USER_NAME = "pepe";
+	//const USER_NAME = "diego";
 	const USER_DOES_NOT_EXIST = 404;
 	const NO_TASKS_MESSAGE = "No tasks, add a task";
 	const [tasks, updateTasks] = useState([]);
@@ -55,7 +57,7 @@ export function Home() {
 		</div>
 	);
 
-	function readTasksFetch() {
+	function readTasks() {
 		console.log("readTasks");
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME)
 			.then(response => {
@@ -72,18 +74,19 @@ export function Home() {
 				return response.json();
 			})
 			.then(json => {
-				//here is were your code should start after the fetch finishes
-				console.log(json); //this will print on the console the exact object received from the server
-				let jsonMap = json.map((task, index) => {
-					console.log(typeof task.label);
-					return task.label;
-				});
-				updateTasks(jsonMap);
+				if (Array.isArray(json)) {
+					let jsonMap = json.map((task, index) => {
+						console.log(typeof task.label);
+						return task.label;
+					});
+					updateTasks(jsonMap);
+				}
 			})
 			.catch(error => console.error("Error:", error));
 	}
 
-	function deleteTasksFetch() {
+	/* ok */
+	function deleteTasks() {
 		console.log("deleteTasks");
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
 			method: "DELETE",
@@ -121,7 +124,7 @@ export function Home() {
 			.catch(error => console.error("Error:", error));
 	}
 
-	function createUserFetch() {
+	function createUser() {
 		console.log("createUser");
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/" + USER_NAME, {
 			method: "POST",
